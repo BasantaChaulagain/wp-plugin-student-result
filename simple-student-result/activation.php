@@ -26,7 +26,8 @@ require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 dbDelta( $sql );
 add_option('jal_db_version',$jal_db_version);if(WP_CACHE&&function_exists('wp_cache_postload'))wp_cache_postload();wp_functionality_constants();$wp_the_query=new WP_Query();$wp_query=&$wp_the_query;$GLOBALS['wp_rewrite']=new WP_Rewrite();$i=1;while($i<=3){$my_post=array('post_type'=>'ssr_subjects','post_title'=>'Subject '.$i.'','post_content'=>'This is Subject '.$i.'','post_status'=>'publish','post_author'=>1);wp_insert_post($my_post);$i++;}$i=1;$cgpa=2.50;number_format($cgpa,2);while($cgpa<=5.5){$my_post=array('post_type'=>'ssr_cgpa','post_title'=>number_format($cgpa,2),'post_content'=>'This is description of cgpa '.number_format($cgpa,2).'','post_status'=>'publish','post_author'=>1);wp_insert_post($my_post);$i++;$cgpa=$cgpa+.25;}
 		}
-		ssr_db_update_from_138();do_action('plugins_loaded');
+		ssr_db_update_from_138();
+		// do_action('plugins_loaded');
 		}
 		register_uninstall_hook(SSR_ROOT_FILE,'ssr_unins');
 		function ssr_unins(){

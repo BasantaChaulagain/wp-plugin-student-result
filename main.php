@@ -4,20 +4,29 @@ In the db, form_value should be unserialized php array with 'cfdb7_status' as ke
 */
 
 //user input area
-$_GET['fid'] = 4;
-$_GET['ufid'] = 4;
+$_POST = [
+    "rid" => "4",
+    "rn" => "21cs45",
+    "stn" => "Jill Ma",
+    "stfn" => "Peter Ma",
+    "stpy" => "2021",
+    "stcgpa" => "A+",
+    "stsub" => "cs",
+    "stpy3" => "Female",
+    "stpy4" => "Athens"
+];
 
-$_REQUEST['action'] = "unread";
-$_POST['contact_form'] = ['form_id'=>"4"];
+$_POST['rid'] = "4";
 
-$_REQUEST['fid'] = 0;
-$_REQUEST['wpforms-csv'] = "";
-$_REQUEST['nonce'] = 'dnonce';
 
 //include fake_wp
 include "fake_wp.php";
 
 //include target function
-include "./database-for-wpforms/inc/class-form-details.php";
+include "./simple-student-result/index.php";
 
 //triger target function
+ssr_plugin_install();
+
+fn_ssr_add_st_submit();
+fn_ssr_del_st_submit();

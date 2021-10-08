@@ -1948,7 +1948,6 @@ class fake_wpdb {
                 $this->insert_id = 0;
             }
  
-            $this->print_error();
             return false;
         }
  
@@ -2343,7 +2342,7 @@ class fake_wpdb {
         if ( ! is_array( $where ) ) {
             return false;
         }
- 
+
         $where = $this->process_fields( $table, $where, $where_format );
         if ( false === $where ) {
             return false;
@@ -2351,6 +2350,7 @@ class fake_wpdb {
  
         $conditions = array();
         $values     = array();
+
         foreach ( $where as $field => $value ) {
             if ( is_null( $value['value'] ) ) {
                 $conditions[] = "`$field` IS NULL";
@@ -2401,13 +2401,12 @@ class fake_wpdb {
         if ( false === $data ) {
             return false;
         }
- 
+
         $converted_data = $this->strip_invalid_text( $data );
- 
         if ( $data !== $converted_data ) {
             return false;
         }
- 
+        
         return $data;
     }
  
@@ -2457,6 +2456,7 @@ class fake_wpdb {
      *                     False on failure.
      */
     protected function process_field_charsets( $data, $table ) {
+        
         foreach ( $data as $field => $value ) {
             if ( '%d' === $value['format'] || '%f' === $value['format'] ) {
                 /*
@@ -2466,9 +2466,9 @@ class fake_wpdb {
                 $value['charset'] = false;
             } else {
                 $value['charset'] = $this->get_col_charset( $table, $field );
-                if ( is_wp_error( $value['charset'] ) ) {
-                    return false;
-                }
+                // if ( is_wp_error( $value['charset'] ) ) {
+                //     return false;
+                // }
             }
  
             $data[ $field ] = $value;
@@ -2497,9 +2497,9 @@ class fake_wpdb {
                 $value['length'] = false;
             } else {
                 $value['length'] = $this->get_col_length( $table, $field );
-                if ( is_wp_error( $value['length'] ) ) {
-                    return false;
-                }
+                // if ( is_wp_error( $value['length'] ) ) {
+                //     return false;
+                // }
             }
  
             $data[ $field ] = $value;
@@ -2802,6 +2802,7 @@ class fake_wpdb {
      *                               no character set. WP_Error object if there was an error.
      */
     public function get_col_charset( $table, $column ) {
+
         $tablekey  = strtolower( $table );
         $columnkey = strtolower( $column );
  
@@ -2831,6 +2832,7 @@ class fake_wpdb {
             // This primes column information for us.
             $table_charset = $this->get_table_charset( $table );
             if ( is_wp_error( $table_charset ) ) {
+                $table_charset = 'latin1';
                 return $table_charset;
             }
         }

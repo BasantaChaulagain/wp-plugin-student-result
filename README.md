@@ -58,4 +58,21 @@ _get_component_from_parsed_url_array() __done__\
 _wp_translate_php_url_constant_to_key() __done__\
 wp_allowed_protocols() __done__\
 did_action() __done__\
-\
+plugin_dir_path() __done__\
+trailingslashit() __done__\
+untrailingslashit() __done__\
+load_plugin_textdomain __quick_fix__; \
+get_option() __quick_fix__; \
+is_main_site() __quick_fix__; \
+is_serialized_string() __done__\
+is_serialized() __done__\
+wp_get_db_schema() __done__\
+register_uninstall_hook() __done__\
+update_option() __done__\
+wp_installing() __done__\
+wp_protect_special_option() __done__\
+sanitize_option() __done__\
+maybe_serialize() __done__\
+add_option() __done__\
+wp_cache_get() __done__\
+esc_attr() __done__\
